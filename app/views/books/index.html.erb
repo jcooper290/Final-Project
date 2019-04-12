@@ -2,12 +2,20 @@
 
 <h1 style="margin: 1rem;">Courses</h1>
 
-  <table style="margin: 1rem; width: 95%" class="table table-bordered">
-    <thead>
+  <table style="margin: 1rem; width: 95%" class="table table-striped">
+    <thead class="thead-dark">
       <tr>
         <th scope="col">Course</th>
         <th scope="col">Description</th>
         <th scope="col">Professor</th>
+        <% if current_user %>
+          <th></th>
+          <th></th>
+        <% end %>
+        <% if current_user %>
+          <th></th>
+          <th></th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
@@ -17,8 +25,8 @@
           <td><%= book.descr %></td>
           <td><%= book.author.name %></td>
           <% if current_user %>
-            <td><%= link_to 'Leave', edit_book_path(book), class:"btn btn-outline-primary"%></td>
-            <td><%= link_to 'Join', book, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-outline-primary"%></td>
+            <td><%= link_to 'Leave', book, method: :leave, class:"btn btn-outline-primary"%></td>
+            <td><%= link_to 'Join', book, method: :join, data: { confirm: 'Are you sure?' },class:"btn btn-outline-primary"%></td>
           <% end %>
           <% if current_user && current_user.admin %>
             <td><%= link_to 'Edit', edit_book_path(book), class:"btn btn-outline-primary"%></td>
